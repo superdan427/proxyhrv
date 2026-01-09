@@ -4,7 +4,7 @@ let group = [];
 let startTime = 0;
 let duration = 0;
 
-const MAX_HRV = 10;     // zoomed-in scale (HRV proxy never exceeds ~6–8)
+const MAX_HRV = 10;     // 6–8 explain
 const PADDING = 100;
 
 let speedSlider;
@@ -98,19 +98,14 @@ function drawHRVLine(data, elapsed, hueVal) {
   endShape();
 }
 
-
-// ------------------------------------------------------------
-// AXES + 5-SECOND TICKS (matching BPM sketch)
-// ------------------------------------------------------------
-
 function drawAxes() {
   stroke(0);
   strokeWeight(1);
 
-  // X-axis
+  // X
   line(PADDING, height - PADDING, width - PADDING, height - PADDING);
 
-  // Y-axis ticks (HRV scale)
+  // Y
   for (let v = 0; v <= MAX_HRV; v += 2) {
     let y = map(v, 0, MAX_HRV, height - PADDING, PADDING);
     stroke(180);
@@ -122,7 +117,7 @@ function drawAxes() {
     text(v, PADDING - 15, y);
   }
 
-  // time ticks every 5 seconds
+  // 5sec
   textAlign(CENTER, TOP);
   textSize(16);
   fill(0);
@@ -143,9 +138,7 @@ function drawAxes() {
 }
 
 
-// ------------------------------------------------------------
-// VERTICAL CURSOR
-// ------------------------------------------------------------
+
 
 function drawVerticalCursor(elapsed) {
   let x = map(elapsed, 0, duration, PADDING, width - PADDING);
@@ -156,9 +149,7 @@ function drawVerticalCursor(elapsed) {
 }
 
 
-// ------------------------------------------------------------
-// DATA HELPERS
-// ------------------------------------------------------------
+
 
 function getBPMAtSecond(data, sec) {
   let bpm = null;
@@ -188,9 +179,6 @@ function findDuration(solo, group) {
 }
 
 
-// ------------------------------------------------------------
-// SLIDER LABEL + RESIZE
-// ------------------------------------------------------------
 
 function drawSpeedLabel() {
   fill(0);
